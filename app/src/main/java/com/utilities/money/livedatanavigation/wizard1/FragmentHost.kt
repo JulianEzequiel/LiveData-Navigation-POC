@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.utilities.money.livedatanavigation.R
 import com.utilities.money.livedatanavigation.navigation.BasicAppRouter
+import com.utilities.money.livedatanavigation.navigation.observer.getBasicAppRouter
 import com.utilities.money.livedatanavigation.navigation.observer.getEventAccesorFrom
 import com.utilities.money.livedatanavigation.navigation.observer.getEventAccesorFromParent
 
@@ -43,7 +44,7 @@ class FragmentHost : Fragment() {
     override fun onAttach(context: Context?) {
         super.onAttach(context)
 
-        this.basicAppRouter = this.getEventAccesorFromParent()
+        this.basicAppRouter = this.getBasicAppRouter()
         this.fragmentChildWizard1Events = this.getEventAccesorFrom(this)
     }
 

@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.utilities.money.livedatanavigation.R
 import com.utilities.money.livedatanavigation.navigation.BasicAppRouter
+import com.utilities.money.livedatanavigation.navigation.observer.getBasicAppRouter
 import com.utilities.money.livedatanavigation.navigation.observer.getEventAccesor
 
 class ActivityHost : AppCompatActivity() {
@@ -37,7 +38,7 @@ class ActivityHost : AppCompatActivity() {
     }
 
     private fun bindObservers() {
-        this.basicAppRouter = this.getEventAccesor()
+        this.basicAppRouter = this.getBasicAppRouter()
         this.basicAppRouter.actionBarTitle.observe(this, Observer {
             this.supportActionBar?.title = it
         })
