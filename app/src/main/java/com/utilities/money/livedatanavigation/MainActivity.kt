@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.utilities.money.livedatanavigation.navigation.BasicAppRouter
+import com.utilities.money.livedatanavigation.navigation.observer.getEventAccesor
 import com.utilities.money.livedatanavigation.wizard1.FragmentHost
 import com.utilities.money.livedatanavigation.wizard2.ActivityHost
 
@@ -29,7 +30,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun bindObservers() {
-        this.basicAppRouter = ViewModelProviders.of(this).get(BasicAppRouter::class.java)
+        this.basicAppRouter = this.getEventAccesor()
 
         this.basicAppRouter.actionBarTitle.observe(this, Observer {
             this.supportActionBar?.title = it

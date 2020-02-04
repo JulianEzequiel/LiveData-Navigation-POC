@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.utilities.money.livedatanavigation.R
 import com.utilities.money.livedatanavigation.navigation.BasicAppRouter
+import com.utilities.money.livedatanavigation.navigation.observer.getEventAccesor
 
 class ActivityHost : AppCompatActivity() {
 
@@ -36,12 +37,12 @@ class ActivityHost : AppCompatActivity() {
     }
 
     private fun bindObservers() {
-        this.basicAppRouter = ViewModelProviders.of(this).get(BasicAppRouter::class.java)
+        this.basicAppRouter = this.getEventAccesor()
         this.basicAppRouter.actionBarTitle.observe(this, Observer {
             this.supportActionBar?.title = it
         })
 
-        this.fragmentChildWizard2Events = ViewModelProviders.of(this).get(FragmentChildWizard2Events::class.java)
+        this.fragmentChildWizard2Events = this.getEventAccesor()
         this.fragmentChildWizard2Events.sendEvent.observe(this, Observer {
             Toast.makeText(this, "Event Received in ActivityHost", Toast.LENGTH_SHORT).show()
         })

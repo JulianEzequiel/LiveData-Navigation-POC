@@ -13,6 +13,9 @@ import androidx.lifecycle.ViewModelProviders
 import com.utilities.money.livedatanavigation.R
 import com.utilities.money.livedatanavigation.navigation.BasicAppRouter
 import com.utilities.money.livedatanavigation.navigation.event.SingleLiveEvent
+import com.utilities.money.livedatanavigation.navigation.observer.getEventAccesor
+import com.utilities.money.livedatanavigation.navigation.observer.getEventAccesorFrom
+import com.utilities.money.livedatanavigation.navigation.observer.getEventAccesorFromParent
 
 class FragmentChildWizard2Events : ViewModel() {
 
@@ -46,8 +49,8 @@ class FragmentChildWizard2 : Fragment() {
     override fun onAttach(context: Context?) {
         super.onAttach(context)
 
-        this.basicAppRouter = ViewModelProviders.of(this.requireActivity()).get(BasicAppRouter::class.java)
-        this.ownEvents = ViewModelProviders.of(this.requireActivity()).get(FragmentChildWizard2Events::class.java)
+        this.basicAppRouter = this.getEventAccesorFrom(this.requireActivity())
+        this.ownEvents = this.getEventAccesorFromParent()
     }
 
     private fun bindViewListeners(view: View?) {
